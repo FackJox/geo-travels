@@ -1,9 +1,6 @@
 import * as api from '../api/server';
 import UploadFiles from '../components/UploadFiles/UploadFiles'
 
-
-const files = UploadFiles();
-
 // Action Creators
 export const getLocations = () => async (dispatch) => {
     try {
@@ -25,7 +22,7 @@ export const createLocation = (location) => async (dispatch) => {
     }
 }
 
-
+const files = UploadFiles;
 
 export const sendFiles = (files) => async (dispatch) => {
     try {
