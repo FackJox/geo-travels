@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import UploadService from "../../services/uploadfiles"
+import UploadFilesService from "../../actions/uploadfiles"
 import { ListItem, Button, Typography, Box } from '@material-ui/core';
 import BorderLinearProgress from './styles'
 
 // https://www.bezkoder.com/material-ui-file-upload/
 
-export default class UploadFiles extends Component {
+class UploadFiles extends Component {
     constructor(props) {
         super(props);
 
@@ -30,7 +30,7 @@ export default class UploadFiles extends Component {
         this.setState({
             progress: 0
         });
-        UploadService.upload(this.state.currentFile, (event) => {
+        UploadFilesService.upload(this.state.currentFile, (event) => {
             this.setState({
                 progress: Math.round((100 * event.loaded) / event.total),
             });
@@ -40,7 +40,7 @@ export default class UploadFiles extends Component {
                 message: response.data.message,
                 isError: false
                 });
-                return UploadService.getFiles();
+                return UploadFilesService.getFiles();
             })
             .then((files) => {
                 this.setState({
@@ -57,7 +57,7 @@ export default class UploadFiles extends Component {
             });    
         }
         componentDidMount() {
-            UploadService.getFiles().then((response) => {
+          UploadFilesService.getFiles().then((response) => {
               this.setState({
                 imageInfos: response.data,
               });
@@ -141,4 +141,6 @@ export default class UploadFiles extends Component {
         }
 
 }
+
+export default UploadFiles
 

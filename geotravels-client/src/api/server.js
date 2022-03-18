@@ -11,3 +11,4 @@ export const uploadFiles = () => axios.create({
         "Content-type": "application/json"
     }
 });
+export default url;
